@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fresh Prince Barbers Huddersfield</title>
+<meta name="description" content="Fresh Prince Barbers, 300A Bradford Road, Huddersfield. Skip the wait: pick your time and pay just £5 extra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --panel: #17171b;
+    --line: #2a2a31;
+    --text: #f4f1ea;
+    --muted: #a6a3ad;
+    --gold: #f5c542;
+    --gold-ink: #1a1405;
+    --wa: #25d366;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+
+  /* Shop banner */
+  .banner {
+    background: var(--gold);
+    color: var(--gold-ink);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    padding: 8px 16px;
+  }
+  header {
+    border-bottom: 1px solid var(--line);
+    padding: 16px 0;
+  }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .logo { font-family: Anton, Impact, sans-serif; font-size: 26px; letter-spacing: 1px; text-transform: uppercase; }
+  .logo span { color: var(--gold); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border: 0; border-radius: 999px; cursor: pointer;
+    font: 800 16px Inter, sans-serif; text-decoration: none;
+    padding: 14px 24px;
+  }
+  .btn-gold { background: var(--gold); color: var(--gold-ink); }
+  .btn-wa { background: var(--wa); color: #06260f; }
+  .btn-small { padding: 10px 16px; font-size: 14px; }
+
+  /* Hero offer */
+  .hero { padding: 64px 0 48px; text-align: center; }
+  .tag {
+    display: inline-block; border: 1px solid var(--gold); color: var(--gold);
+    border-radius: 999px; padding: 4px 14px; font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: Anton, Impact, sans-serif; font-weight: 400;
+    font-size: clamp(44px, 10vw, 88px); line-height: 1; text-transform: uppercase;
+  }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p { color: var(--muted); font-size: 18px; max-width: 520px; margin: 20px auto 32px; }
+  .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .price-pill {
+    display: inline-block; margin-top: 28px; font-size: 15px; color: var(--muted);
+  }
+  .price-pill b { color: var(--text); }
+
+  /* Steps */
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  h2 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 36px; text-transform: uppercase; margin-bottom: 24px; text-align: center; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .step .n { font-family: Anton, Impact, sans-serif; color: var(--gold); font-size: 40px; line-height: 1; }
+  .step h3 { font-size: 18px; margin: 12px 0 6px; }
+  .step p { color: var(--muted); font-size: 15px; }
+
+  /* Booking form */
+  form { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; max-width: 560px; margin: 0 auto; display: grid; gap: 16px; }
+  label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+  input, select {
+    width: 100%; background: var(--bg); color: var(--text);
+    border: 1px solid var(--line); border-radius: 10px;
+    font: 16px Inter, sans-serif; padding: 12px;
+  }
+  input:focus, select:focus { outline: 2px solid var(--gold); border-color: transparent; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .note { color: var(--muted); font-size: 13px; text-align: center; }
+
+  /* Payment */
+  .pay { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .pay .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .pay h3 { font-size: 18px; margin-bottom: 12px; }
+  .pay dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 15px; }
+  .pay dt { color: var(--muted); }
+  .pay dd { font-weight: 600; word-break: break-word; }
+  .copy { background: none; border: 1px solid var(--line); color: var(--gold); border-radius: 6px; font-size: 12px; padding: 2px 8px; margin-left: 6px; cursor: pointer; }
+  .ref { margin-top: 16px; text-align: center; color: var(--muted); font-size: 15px; }
+  .ref b { color: var(--gold); }
+
+  /* Visit */
+  .visit { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; align-items: stretch; }
+  .visit .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .visit table { width: 100%; font-size: 15px; border-collapse: collapse; }
+  .visit td { padding: 4px 0; }
+  .visit td:last-child { text-align: right; font-weight: 600; }
+  iframe { width: 100%; height: 100%; min-height: 240px; border: 0; border-radius: 16px; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 96px; text-align: center; color: var(--muted); font-size: 14px; }
+
+  /* Floating WhatsApp */
+  .fab {
+    position: fixed; right: 16px; bottom: 16px; z-index: 10;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--wa); display: grid; place-items: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,.4);
+  }
+  .fab svg { width: 32px; height: 32px; fill: #fff; }
+
+  @media (max-width: 480px) {
+    .row { grid-template-columns: 1fr; }
+    header .btn-small { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">📍 300A Bradford Road, Huddersfield · Open 7 days · Walk-ins welcome</div>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Fresh <span>Prince</span> Barbers</div>
+    <a class="btn btn-gold btn-small" href="#book">Pick your time</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <div class="tag">Skip the queue</div>
+    <h1>Pick your time.<br><em>No waiting.</em></h1>
+    <p>Don't sit around on a busy day. Choose your slot, pay just <b>£5 extra</b> to lock it in, and walk straight into the chair.</p>
+    <div class="ctas">
+      <a class="btn btn-gold" href="#book">Book my slot</a>
+      <a class="btn btn-wa js-wa" href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4.1-4.9-4.3-.1-.2-1.2-1.6-1.2-3s.7-2.2 1-2.5c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.2.5.4.1.1.1.7-.1 1.3Z"/></svg>
+        WhatsApp us
+      </a>
+    </div>
+    <div class="price-pill">Priority booking: <b>+£5</b> on top of your usual cut</div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Pick your time</h3><p>Choose a day and time that suits you below.</p></div>
+        <div class="step"><div class="n">2</div><h3>Pay £5 to lock it</h3><p>Send £5 by bank transfer or PayPal. Use your name as the reference.</p></div>
+        <div class="step"><div class="n">3</div><h3>Walk straight in</h3><p>Turn up at your time. No queue, no waiting. Pay for your cut in the shop as normal.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="wrap">
+      <h2>Book your slot</h2>
+      <form id="bookForm">
+        <label>Your name
+          <input name="name" required autocomplete="name" placeholder="e.g. Will Smith">
+        </label>
+        <div class="row">
+          <label>Day
+            <input type="date" name="date" id="date" required>
+          </label>
+          <label>Time
+            <select name="time" id="time" required></select>
+          </label>
+        </div>
+        <label>Paid the £5 by
+          <select name="method">
+            <option>Bank transfer</option>
+            <option>PayPal</option>
+            <option>Will pay now, after booking</option>
+          </select>
+        </label>
+        <button class="btn btn-wa" type="submit">Send booking on WhatsApp</button>
+        <p class="note">This opens WhatsApp with your booking ready to send. We'll confirm your slot once the £5 lands.</p>
+      </form>
+    </div>
+  </section>
+
+  <section id="pay">
+    <div class="wrap">
+      <h2>Pay the £5</h2>
+      <div class="pay">
+        <div class="card">
+          <h3>🏦 Bank transfer</h3>
+          <dl>
+            <dt>Name</dt><dd id="bankName"></dd>
+            <dt>Sort code</dt><dd><span id="sortCode"></span><button class="copy" data-copy="sortCode" type="button">Copy</button></dd>
+            <dt>Account</dt><dd><span id="accNo"></span><button class="copy" data-copy="accNo" type="button">Copy</button></dd>
+          </dl>
+        </div>
+        <div class="card">
+          <h3>💳 PayPal</h3>
+          <p style="color:var(--muted);font-size:15px;margin-bottom:16px">Send £5 as Friends &amp; Family.</p>
+          <a class="btn btn-gold" id="paypalLink" href="#" target="_blank" rel="noopener">Pay £5 with PayPal</a>
+        </div>
+      </div>
+      <p class="ref">Reference: <b>your name + booking time</b></p>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap">
+      <h2>Find us</h2>
+      <div class="visit">
+        <div class="card">
+          <h3 style="margin-bottom:8px">Fresh Prince Barbers</h3>
+          <p style="color:var(--muted);margin-bottom:16px">300A Bradford Road, Huddersfield</p>
+          <table>
+            <tr><td>Mon – Sat</td><td>9:00am – 7:00pm</td></tr>
+            <tr><td>Sunday</td><td>10:00am – 5:30pm</td></tr>
+          </table>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+            <a class="btn btn-gold btn-small" href="https://share.google/h16wno0VXVLxXwCt4" target="_blank" rel="noopener">Open in Google Maps</a>
+            <a class="btn btn-wa btn-small js-wa" href="#">WhatsApp</a>
+          </div>
+        </div>
+        <iframe title="Map" loading="lazy" src="https://maps.google.com/maps?q=Fresh+Prince+Barbers+300A+Bradford+Road+Huddersfield&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> Fresh Prince Barbers Huddersfield
+</footer>
+
+<a class="fab js-wa" href="#" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4.1-4.9-4.3-.1-.2-1.2-1.6-1.2-3s.7-2.2 1-2.5c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.2.5.4.1.1.1.7-.1 1.3Z"/></svg>
+</a>
+
+<script>
+  // ===== EDIT THESE DETAILS =====
+  const SHOP = {
+    whatsapp: "447000000000",          // WhatsApp number, international format, no + or spaces
+    bankName: "FRESH PRINCE BARBERS",  // Account holder name
+    sortCode: "00-00-00",
+    accountNumber: "00000000",
+    paypal: "https://paypal.me/yourname/5GBP", // PayPal.me link with amount
+    slotMinutes: 30,
+    hours: { // 24h open/close per day (0 = Sunday)
+      0: ["10:00", "17:30"],
+      1: ["09:00", "19:00"], 2: ["09:00", "19:00"], 3: ["09:00", "19:00"],
+      4: ["09:00", "19:00"], 5: ["09:00", "19:00"], 6: ["09:00", "19:00"]
+    }
+  };
+  // ==============================
+
+  const waUrl = text => "https://wa.me/" + SHOP.whatsapp + (text ? "?text=" + encodeURIComponent(text) : "");
+
+  document.querySelectorAll(".js-wa").forEach(a => {
+    a.href = waUrl("Hi Fresh Prince, I'd like to book a priority slot (+£5).");
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+  document.getElementById("bankName").textContent = SHOP.bankName;
+  document.getElementById("sortCode").textContent = SHOP.sortCode;
+  document.getElementById("accNo").textContent = SHOP.accountNumber;
+  document.getElementById("paypalLink").href = SHOP.paypal;
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  document.querySelectorAll(".copy").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const value = document.getElementById(btn.dataset.copy).textContent;
+      navigator.clipboard?.writeText(value).then(() => {
+        btn.textContent = "Copied";
+        setTimeout(() => (btn.textContent = "Copy"), 1500);
+      });
+    });
+  });
+
+  // Date + time slots
+  const dateInput = document.getElementById("date");
+  const timeSelect = document.getElementById("time");
+  const pad = n => String(n).padStart(2, "0");
+  const toISO = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+  const today = new Date();
+  dateInput.min = toISO(today);
+  dateInput.value = toISO(today);
+
+  function fillSlots() {
+    const [y, m, d] = dateInput.value.split("-").map(Number);
+    const day = new Date(y, m - 1, d);
+    const [open, close] = SHOP.hours[day.getDay()];
+    const toMin = t => { const [h, mm] = t.split(":").map(Number); return h * 60 + mm; };
+    const isToday = toISO(day) === toISO(new Date());
+    const now = new Date();
+    const nowMin = now.getHours() * 60 + now.getMinutes() + 30; // at least 30 min notice
+
+    timeSelect.innerHTML = "";
+    for (let t = toMin(open); t + SHOP.slotMinutes <= toMin(close); t += SHOP.slotMinutes) {
+      if (isToday && t < nowMin) continue;
+      const label = pad(Math.floor(t / 60)) + ":" + pad(t % 60);
+      timeSelect.add(new Option(label, label));
+    }
+    if (!timeSelect.options.length) {
+      timeSelect.add(new Option("No slots left today, pick another day", ""));
+    }
+  }
+  dateInput.addEventListener("change", fillSlots);
+  fillSlots();
+
+  document.getElementById("bookForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const niceDate = new Date(f.get("date") + "T00:00").toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
+    const msg =
+      "Hi Fresh Prince, I'd like to book a priority slot (+£5).\n\n" +
+      "Name: " + f.get("name") + "\n" +
+      "Day: " + niceDate + "\n" +
+      "Time: " + f.get("time") + "\n" +
+      "£5 payment: " + f.get("method");
+    window.open(waUrl(msg), "_blank");
+  });
+</script>
+</body>
+</html>
