@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fresh Prince Barbers Huddersfield</title>
 <meta name="description" content="Fresh Prince Barbers, 300A Bradford Road, Huddersfield. Skip the wait: pick your time and pay just £5 extra.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -20,7 +21,6 @@
     --wa: #25d366;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
     color: var(--text);
@@ -28,64 +28,77 @@
     line-height: 1.5;
   }
   a { color: inherit; }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
-
-  /* Shop banner */
-  .banner {
-    background: var(--gold);
-    color: var(--gold-ink);
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    padding: 8px 16px;
-  }
-  header {
-    border-bottom: 1px solid var(--line);
-    padding: 16px 0;
-  }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .logo { font-family: Anton, Impact, sans-serif; font-size: 26px; letter-spacing: 1px; text-transform: uppercase; }
-  .logo span { color: var(--gold); }
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     border: 0; border-radius: 999px; cursor: pointer;
-    font: 800 16px Inter, sans-serif; text-decoration: none;
-    padding: 14px 24px;
+    font: 800 17px Inter, sans-serif; text-decoration: none;
+    padding: 16px 28px;
   }
   .btn-gold { background: var(--gold); color: var(--gold-ink); }
   .btn-wa { background: var(--wa); color: #06260f; }
-  .btn-small { padding: 10px 16px; font-size: 14px; }
+  .btn-ghost { background: none; color: var(--muted); border: 1px solid var(--line); }
+  .wa-ico { width: 20px; height: 20px; fill: currentColor; }
 
-  /* Hero offer */
-  .hero { padding: 64px 0 48px; text-align: center; }
-  .tag {
-    display: inline-block; border: 1px solid var(--gold); color: var(--gold);
-    border-radius: 999px; padding: 4px 14px; font-size: 13px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+  /* First fold */
+  .fold {
+    min-height: 100vh; min-height: 100svh;
+    display: flex; flex-direction: column;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(245,197,66,.12), transparent 60%),
+      var(--bg);
   }
+  .banner {
+    background: var(--gold); color: var(--gold-ink);
+    font-size: 13px; font-weight: 600; text-align: center; padding: 8px 16px;
+  }
+  .hero {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 24px 16px 32px;
+  }
+  .logo { width: 132px; height: 132px; margin-bottom: 20px; }
   .hero h1 {
     font-family: Anton, Impact, sans-serif; font-weight: 400;
-    font-size: clamp(44px, 10vw, 88px); line-height: 1; text-transform: uppercase;
+    font-size: clamp(42px, 9vw, 84px); line-height: 1; text-transform: uppercase;
   }
   .hero h1 em { font-style: normal; color: var(--gold); }
-  .hero p { color: var(--muted); font-size: 18px; max-width: 520px; margin: 20px auto 32px; }
-  .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-  .price-pill {
-    display: inline-block; margin-top: 28px; font-size: 15px; color: var(--muted);
+  .hero p { color: var(--muted); font-size: 18px; max-width: 460px; margin: 16px auto 28px; }
+  .hero p b { color: var(--text); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .scroll-hint { margin-top: 28px; font-size: 13px; color: var(--muted); text-decoration: none; }
+
+  /* Second fold */
+  .info { border-top: 1px solid var(--line); padding: 40px 16px 96px; }
+  .info .wrap { max-width: 900px; margin: 0 auto; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+  .card h2 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .card ol { padding-left: 20px; color: var(--muted); font-size: 15px; display: grid; gap: 6px; }
+  .card ol b { color: var(--text); }
+  .card table { width: 100%; font-size: 15px; border-collapse: collapse; }
+  .card td { padding: 3px 0; color: var(--muted); }
+  .card td:last-child { text-align: right; color: var(--text); font-weight: 600; }
+  .card .addr { color: var(--muted); font-size: 15px; margin-bottom: 10px; }
+  .card a.link { color: var(--gold); font-weight: 600; font-size: 14px; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 32px; }
+
+  /* Popup */
+  .modal {
+    position: fixed; inset: 0; z-index: 20;
+    background: rgba(0,0,0,.75);
+    display: none; align-items: center; justify-content: center; padding: 16px;
   }
-  .price-pill b { color: var(--text); }
-
-  /* Steps */
-  section { padding: 48px 0; border-top: 1px solid var(--line); }
-  h2 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 36px; text-transform: uppercase; margin-bottom: 24px; text-align: center; }
-  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-  .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
-  .step .n { font-family: Anton, Impact, sans-serif; color: var(--gold); font-size: 40px; line-height: 1; }
-  .step h3 { font-size: 18px; margin: 12px 0 6px; }
-  .step p { color: var(--muted); font-size: 15px; }
-
-  /* Booking form */
-  form { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; max-width: 560px; margin: 0 auto; display: grid; gap: 16px; }
+  .modal.open { display: flex; }
+  .sheet {
+    position: relative; width: 100%; max-width: 440px; max-height: 100%; overflow-y: auto;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 24px;
+  }
+  .close {
+    position: absolute; top: 12px; right: 12px; width: 36px; height: 36px;
+    border-radius: 50%; border: 1px solid var(--line); background: var(--bg);
+    color: var(--text); font-size: 20px; cursor: pointer;
+  }
+  .sheet h3 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 28px; text-transform: uppercase; }
+  .sheet .sub { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+  .sheet form, .step2 { display: grid; gap: 14px; }
   label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
   input, select {
     width: 100%; background: var(--bg); color: var(--text);
@@ -94,160 +107,123 @@
   }
   input:focus, select:focus { outline: 2px solid var(--gold); border-color: transparent; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .note { color: var(--muted); font-size: 13px; text-align: center; }
-
-  /* Payment */
-  .pay { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-  .pay .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
-  .pay h3 { font-size: 18px; margin-bottom: 12px; }
-  .pay dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 15px; }
-  .pay dt { color: var(--muted); }
-  .pay dd { font-weight: 600; word-break: break-word; }
-  .copy { background: none; border: 1px solid var(--line); color: var(--gold); border-radius: 6px; font-size: 12px; padding: 2px 8px; margin-left: 6px; cursor: pointer; }
-  .ref { margin-top: 16px; text-align: center; color: var(--muted); font-size: 15px; }
-  .ref b { color: var(--gold); }
-
-  /* Visit */
-  .visit { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; align-items: stretch; }
-  .visit .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
-  .visit table { width: 100%; font-size: 15px; border-collapse: collapse; }
-  .visit td { padding: 4px 0; }
-  .visit td:last-child { text-align: right; font-weight: 600; }
-  iframe { width: 100%; height: 100%; min-height: 240px; border: 0; border-radius: 16px; }
-
-  footer { border-top: 1px solid var(--line); padding: 32px 0 96px; text-align: center; color: var(--muted); font-size: 14px; }
+  .paybox { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px; font-size: 14px; }
+  .paybox dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; }
+  .paybox dt { color: var(--muted); }
+  .paybox dd { font-weight: 600; }
+  .paybox .ref { margin-top: 8px; color: var(--muted); }
+  .paybox .ref b { color: var(--gold); }
+  .copy { background: none; border: 1px solid var(--line); color: var(--gold); border-radius: 6px; font-size: 12px; padding: 1px 8px; margin-left: 6px; cursor: pointer; }
+  .summary { font-size: 15px; }
+  .summary b { color: var(--gold); }
+  .step2 { display: none; }
+  .sheet.paid form { display: none; }
+  .sheet.paid .step2 { display: grid; }
 
   /* Floating WhatsApp */
   .fab {
     position: fixed; right: 16px; bottom: 16px; z-index: 10;
-    width: 60px; height: 60px; border-radius: 50%;
+    width: 58px; height: 58px; border-radius: 50%;
     background: var(--wa); display: grid; place-items: center;
     box-shadow: 0 6px 20px rgba(0,0,0,.4);
   }
-  .fab svg { width: 32px; height: 32px; fill: #fff; }
+  .fab svg { width: 30px; height: 30px; fill: #fff; }
 
-  @media (max-width: 480px) {
-    .row { grid-template-columns: 1fr; }
-    header .btn-small { display: none; }
+  @media (max-width: 420px) {
+    .logo { width: 110px; height: 110px; }
+    .hero p { font-size: 16px; }
+    .ctas .btn { width: 100%; }
   }
 </style>
 </head>
 <body>
 
-<div class="banner">📍 300A Bradford Road, Huddersfield · Open 7 days · Walk-ins welcome</div>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4.1-4.9-4.3-.1-.2-1.2-1.6-1.2-3s.7-2.2 1-2.5c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.2.5.4.1.1.1.7-.1 1.3Z"/></symbol>
+</svg>
 
-<header>
-  <div class="wrap">
-    <div class="logo">Fresh <span>Prince</span> Barbers</div>
-    <a class="btn btn-gold btn-small" href="#book">Pick your time</a>
-  </div>
-</header>
-
-<main>
-  <div class="hero wrap">
-    <div class="tag">Skip the queue</div>
-    <h1>Pick your time.<br><em>No waiting.</em></h1>
-    <p>Don't sit around on a busy day. Choose your slot, pay just <b>£5 extra</b> to lock it in, and walk straight into the chair.</p>
+<div class="fold">
+  <div class="banner">📍 300A Bradford Rd, Huddersfield · Open 7 days</div>
+  <main class="hero">
+    <img class="logo" src="logo.svg" alt="Fresh Prince Barbers">
+    <h1>Pick your time.<br><em>Skip the wait.</em></h1>
+    <p>Pay just <b>£5 extra</b> to lock in your slot and walk straight into the chair.</p>
     <div class="ctas">
-      <a class="btn btn-gold" href="#book">Book my slot</a>
-      <a class="btn btn-wa js-wa" href="#">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4.1-4.9-4.3-.1-.2-1.2-1.6-1.2-3s.7-2.2 1-2.5c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.2.5.4.1.1.1.7-.1 1.3Z"/></svg>
-        WhatsApp us
-      </a>
+      <button class="btn btn-gold js-open" type="button">Pick my time</button>
+      <a class="btn btn-wa js-wa" href="#"><svg class="wa-ico"><use href="#wa"/></svg>WhatsApp us</a>
     </div>
-    <div class="price-pill">Priority booking: <b>+£5</b> on top of your usual cut</div>
-  </div>
+    <a class="scroll-hint" href="#info">How it works ↓</a>
+  </main>
+</div>
 
-  <section>
-    <div class="wrap">
+<section class="info" id="info">
+  <div class="wrap">
+    <div class="card">
       <h2>How it works</h2>
-      <div class="steps">
-        <div class="step"><div class="n">1</div><h3>Pick your time</h3><p>Choose a day and time that suits you below.</p></div>
-        <div class="step"><div class="n">2</div><h3>Pay £5 to lock it</h3><p>Send £5 by bank transfer or PayPal. Use your name as the reference.</p></div>
-        <div class="step"><div class="n">3</div><h3>Walk straight in</h3><p>Turn up at your time. No queue, no waiting. Pay for your cut in the shop as normal.</p></div>
-      </div>
+      <ol>
+        <li><b>Pick your time</b> in the booking form.</li>
+        <li><b>Pay £5</b> by bank transfer or PayPal.</li>
+        <li><b>Walk straight in.</b> Pay for your cut in the shop.</li>
+      </ol>
     </div>
-  </section>
-
-  <section id="book">
-    <div class="wrap">
-      <h2>Book your slot</h2>
-      <form id="bookForm">
-        <label>Your name
-          <input name="name" required autocomplete="name" placeholder="e.g. Will Smith">
-        </label>
-        <div class="row">
-          <label>Day
-            <input type="date" name="date" id="date" required>
-          </label>
-          <label>Time
-            <select name="time" id="time" required></select>
-          </label>
-        </div>
-        <label>Paid the £5 by
-          <select name="method">
-            <option>Bank transfer</option>
-            <option>PayPal</option>
-            <option>Will pay now, after booking</option>
-          </select>
-        </label>
-        <button class="btn btn-wa" type="submit">Send booking on WhatsApp</button>
-        <p class="note">This opens WhatsApp with your booking ready to send. We'll confirm your slot once the £5 lands.</p>
-      </form>
-    </div>
-  </section>
-
-  <section id="pay">
-    <div class="wrap">
-      <h2>Pay the £5</h2>
-      <div class="pay">
-        <div class="card">
-          <h3>🏦 Bank transfer</h3>
-          <dl>
-            <dt>Name</dt><dd id="bankName"></dd>
-            <dt>Sort code</dt><dd><span id="sortCode"></span><button class="copy" data-copy="sortCode" type="button">Copy</button></dd>
-            <dt>Account</dt><dd><span id="accNo"></span><button class="copy" data-copy="accNo" type="button">Copy</button></dd>
-          </dl>
-        </div>
-        <div class="card">
-          <h3>💳 PayPal</h3>
-          <p style="color:var(--muted);font-size:15px;margin-bottom:16px">Send £5 as Friends &amp; Family.</p>
-          <a class="btn btn-gold" id="paypalLink" href="#" target="_blank" rel="noopener">Pay £5 with PayPal</a>
-        </div>
-      </div>
-      <p class="ref">Reference: <b>your name + booking time</b></p>
-    </div>
-  </section>
-
-  <section id="visit">
-    <div class="wrap">
+    <div class="card">
       <h2>Find us</h2>
-      <div class="visit">
-        <div class="card">
-          <h3 style="margin-bottom:8px">Fresh Prince Barbers</h3>
-          <p style="color:var(--muted);margin-bottom:16px">300A Bradford Road, Huddersfield</p>
-          <table>
-            <tr><td>Mon – Sat</td><td>9:00am – 7:00pm</td></tr>
-            <tr><td>Sunday</td><td>10:00am – 5:30pm</td></tr>
-          </table>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
-            <a class="btn btn-gold btn-small" href="https://share.google/h16wno0VXVLxXwCt4" target="_blank" rel="noopener">Open in Google Maps</a>
-            <a class="btn btn-wa btn-small js-wa" href="#">WhatsApp</a>
-          </div>
-        </div>
-        <iframe title="Map" loading="lazy" src="https://maps.google.com/maps?q=Fresh+Prince+Barbers+300A+Bradford+Road+Huddersfield&output=embed"></iframe>
-      </div>
+      <p class="addr">300A Bradford Road, Huddersfield</p>
+      <table>
+        <tr><td>Mon – Sat</td><td>9:00am – 7:00pm</td></tr>
+        <tr><td>Sunday</td><td>10:00am – 5:30pm</td></tr>
+      </table>
+      <p style="margin-top:10px"><a class="link" href="https://share.google/h16wno0VXVLxXwCt4" target="_blank" rel="noopener">Open in Google Maps →</a></p>
     </div>
-  </section>
-</main>
+  </div>
+  <footer>© <span id="year"></span> Fresh Prince Barbers Huddersfield</footer>
+</section>
 
-<footer>
-  © <span id="year"></span> Fresh Prince Barbers Huddersfield
-</footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="sheet" id="sheet">
+    <button class="close js-close" type="button" aria-label="Close">×</button>
 
-<a class="fab js-wa" href="#" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4.1-4.9-4.3-.1-.2-1.2-1.6-1.2-3s.7-2.2 1-2.5c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.2.5.4.1.1.1.7-.1 1.3Z"/></svg>
-</a>
+    <form id="bookForm">
+      <div>
+        <h3 id="modalTitle">Pick your time</h3>
+        <p class="sub">Priority slot: +£5 on top of your cut.</p>
+      </div>
+      <label>Your name
+        <input name="name" required autocomplete="name" placeholder="e.g. Will Smith">
+      </label>
+      <div class="row">
+        <label>Day
+          <input type="date" name="date" id="date" required>
+        </label>
+        <label>Time
+          <select name="time" id="time" required></select>
+        </label>
+      </div>
+      <button class="btn btn-gold" type="submit">Next: pay £5</button>
+    </form>
+
+    <div class="step2">
+      <div>
+        <h3>Lock it in</h3>
+        <p class="summary" id="summary"></p>
+      </div>
+      <div class="paybox">
+        <strong>🏦 Bank transfer</strong>
+        <dl style="margin-top:8px">
+          <dt>Name</dt><dd id="bankName"></dd>
+          <dt>Sort code</dt><dd><span id="sortCode"></span><button class="copy" data-copy="sortCode" type="button">Copy</button></dd>
+          <dt>Account</dt><dd><span id="accNo"></span><button class="copy" data-copy="accNo" type="button">Copy</button></dd>
+        </dl>
+        <p class="ref">Reference: <b>your name</b></p>
+      </div>
+      <a class="btn btn-gold" id="paypalLink" href="#" target="_blank" rel="noopener">Or pay £5 with PayPal</a>
+      <button class="btn btn-wa" id="sendWa" type="button"><svg class="wa-ico"><use href="#wa"/></svg>I've paid, send booking</button>
+      <button class="btn btn-ghost" id="back" type="button">← Change time</button>
+    </div>
+  </div>
+</div>
+
+<a class="fab js-wa" href="#" aria-label="Chat on WhatsApp"><svg><use href="#wa"/></svg></a>
 
 <script>
   // ===== EDIT THESE DETAILS =====
@@ -266,6 +242,7 @@
   };
   // ==============================
 
+  const $ = id => document.getElementById(id);
   const waUrl = text => "https://wa.me/" + SHOP.whatsapp + (text ? "?text=" + encodeURIComponent(text) : "");
 
   document.querySelectorAll(".js-wa").forEach(a => {
@@ -273,63 +250,78 @@
     a.target = "_blank";
     a.rel = "noopener";
   });
-  document.getElementById("bankName").textContent = SHOP.bankName;
-  document.getElementById("sortCode").textContent = SHOP.sortCode;
-  document.getElementById("accNo").textContent = SHOP.accountNumber;
-  document.getElementById("paypalLink").href = SHOP.paypal;
-  document.getElementById("year").textContent = new Date().getFullYear();
+  $("bankName").textContent = SHOP.bankName;
+  $("sortCode").textContent = SHOP.sortCode;
+  $("accNo").textContent = SHOP.accountNumber;
+  $("paypalLink").href = SHOP.paypal;
+  $("year").textContent = new Date().getFullYear();
 
   document.querySelectorAll(".copy").forEach(btn => {
     btn.addEventListener("click", () => {
-      const value = document.getElementById(btn.dataset.copy).textContent;
-      navigator.clipboard?.writeText(value).then(() => {
+      navigator.clipboard?.writeText($(btn.dataset.copy).textContent).then(() => {
         btn.textContent = "Copied";
         setTimeout(() => (btn.textContent = "Copy"), 1500);
       });
     });
   });
 
+  // Popup open/close
+  const modal = $("modal"), sheet = $("sheet");
+  const openModal = () => { modal.classList.add("open"); sheet.classList.remove("paid"); };
+  const closeModal = () => modal.classList.remove("open");
+  document.querySelectorAll(".js-open").forEach(b => b.addEventListener("click", openModal));
+  document.querySelectorAll(".js-close").forEach(b => b.addEventListener("click", closeModal));
+  modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
   // Date + time slots
-  const dateInput = document.getElementById("date");
-  const timeSelect = document.getElementById("time");
+  const dateInput = $("date"), timeSelect = $("time");
   const pad = n => String(n).padStart(2, "0");
   const toISO = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
-  const today = new Date();
-  dateInput.min = toISO(today);
-  dateInput.value = toISO(today);
+  const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+  dateInput.min = toISO(new Date());
+  dateInput.value = toISO(new Date());
 
   function fillSlots() {
     const [y, m, d] = dateInput.value.split("-").map(Number);
     const day = new Date(y, m - 1, d);
     const [open, close] = SHOP.hours[day.getDay()];
-    const toMin = t => { const [h, mm] = t.split(":").map(Number); return h * 60 + mm; };
-    const isToday = toISO(day) === toISO(new Date());
     const now = new Date();
-    const nowMin = now.getHours() * 60 + now.getMinutes() + 30; // at least 30 min notice
+    const isToday = toISO(day) === toISO(now);
+    const earliest = now.getHours() * 60 + now.getMinutes() + 30; // at least 30 min notice
 
     timeSelect.innerHTML = "";
     for (let t = toMin(open); t + SHOP.slotMinutes <= toMin(close); t += SHOP.slotMinutes) {
-      if (isToday && t < nowMin) continue;
+      if (isToday && t < earliest) continue;
       const label = pad(Math.floor(t / 60)) + ":" + pad(t % 60);
       timeSelect.add(new Option(label, label));
     }
     if (!timeSelect.options.length) {
-      timeSelect.add(new Option("No slots left today, pick another day", ""));
+      timeSelect.add(new Option("None left today, pick another day", ""));
     }
   }
   dateInput.addEventListener("change", fillSlots);
   fillSlots();
 
-  document.getElementById("bookForm").addEventListener("submit", e => {
+  // Step 1 -> step 2 -> WhatsApp
+  let booking = null;
+  $("bookForm").addEventListener("submit", e => {
     e.preventDefault();
     const f = new FormData(e.target);
     const niceDate = new Date(f.get("date") + "T00:00").toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
+    booking = { name: f.get("name"), date: niceDate, time: f.get("time") };
+    $("summary").innerHTML = "";
+    $("summary").append(booking.date + " at ", Object.assign(document.createElement("b"), { textContent: booking.time }), ". Send £5 to hold it:");
+    sheet.classList.add("paid");
+  });
+  $("back").addEventListener("click", () => sheet.classList.remove("paid"));
+  $("sendWa").addEventListener("click", () => {
     const msg =
       "Hi Fresh Prince, I'd like to book a priority slot (+£5).\n\n" +
-      "Name: " + f.get("name") + "\n" +
-      "Day: " + niceDate + "\n" +
-      "Time: " + f.get("time") + "\n" +
-      "£5 payment: " + f.get("method");
+      "Name: " + booking.name + "\n" +
+      "Day: " + booking.date + "\n" +
+      "Time: " + booking.time + "\n" +
+      "£5 sent ✅";
     window.open(waUrl(msg), "_blank");
   });
 </script>
