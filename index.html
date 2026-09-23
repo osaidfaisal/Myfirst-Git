@@ -4,221 +4,280 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fresh Prince Barbers Huddersfield</title>
-<meta name="description" content="Fresh Prince Barbers, 300A Bradford Road, Huddersfield. Skip the wait: pick your time and pay just £5 extra.">
-<link rel="icon" href="logo.svg" type="image/svg+xml">
+<meta name="description" content="Fresh Prince Barbers, 300A Bradford Road, Huddersfield. Skip the wait: pick your barber and time for just £5 extra.">
+<meta name="theme-color" content="#287a42">
+<link rel="icon" href="logo.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d0d0f;
-    --panel: #17171b;
-    --line: #2a2a31;
-    --text: #f4f1ea;
-    --muted: #a6a3ad;
-    --gold: #f5c542;
-    --gold-ink: #1a1405;
+    --green: #287a42;
+    --green-dark: #1b5a2f;
+    --green-soft: #e4efe6;
+    --cream: #f7f4ec;
+    --paper: #fffdf8;
+    --ink: #1c2a20;
+    --muted: #5d6b61;
+    --line: #dcd6c6;
+    --star: #e0a526;
     --wa: #25d366;
+    --serif: Cinzel, "Trajan Pro", Georgia, serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: Inter, system-ui, sans-serif;
-    line-height: 1.5;
-  }
+  body { background: var(--cream); color: var(--ink); font-family: Inter, system-ui, sans-serif; line-height: 1.5; }
   a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    border: 0; border-radius: 999px; cursor: pointer;
-    font: 800 17px Inter, sans-serif; text-decoration: none;
-    padding: 16px 28px;
+    border: 2px solid transparent; border-radius: 999px; cursor: pointer;
+    font: 700 16px Inter, sans-serif; text-decoration: none; padding: 14px 26px;
+    transition: transform .15s, background .15s;
   }
-  .btn-gold { background: var(--gold); color: var(--gold-ink); }
+  .btn:active { transform: scale(.98); }
+  .btn-green { background: var(--green); color: #fff; }
+  .btn-green:hover { background: var(--green-dark); }
+  .btn-line { background: transparent; color: var(--green); border-color: var(--green); }
   .btn-wa { background: var(--wa); color: #06260f; }
-  .btn-ghost { background: none; color: var(--muted); border: 1px solid var(--line); }
-  .wa-ico { width: 20px; height: 20px; fill: currentColor; }
+  .btn-ghost { background: none; color: var(--muted); border-color: var(--line); }
+  .btn[disabled] { opacity: .4; cursor: not-allowed; }
+  .ico { width: 20px; height: 20px; fill: currentColor; flex: none; }
 
-  /* First fold */
-  .fold {
-    min-height: 100vh; min-height: 100svh;
-    display: flex; flex-direction: column;
-    background:
-      radial-gradient(ellipse at 50% 30%, rgba(245,197,66,.12), transparent 60%),
-      var(--bg);
-  }
-  .banner {
-    background: var(--gold); color: var(--gold-ink);
-    font-size: 13px; font-weight: 600; text-align: center; padding: 8px 16px;
-  }
-  .hero {
-    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 24px 16px 32px;
-  }
-  .logo { width: 132px; height: 132px; margin-bottom: 20px; }
-  .hero h1 {
-    font-family: Anton, Impact, sans-serif; font-weight: 400;
-    font-size: clamp(42px, 9vw, 84px); line-height: 1; text-transform: uppercase;
-  }
-  .hero h1 em { font-style: normal; color: var(--gold); }
-  .hero p { color: var(--muted); font-size: 18px; max-width: 460px; margin: 16px auto 28px; }
-  .hero p b { color: var(--text); }
-  .ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-  .scroll-hint { margin-top: 28px; font-size: 13px; color: var(--muted); text-decoration: none; }
+  /* ---------- Fold 1 ---------- */
+  .fold { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
+  .banner { background: var(--green); color: #fff; font-size: 13px; font-weight: 600; text-align: center; padding: 8px 16px; letter-spacing: .02em; }
+  header { border-bottom: 1px solid var(--line); background: var(--paper); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand img { width: 44px; height: 44px; }
+  .brand span { font-family: var(--serif); font-weight: 800; font-size: 18px; color: var(--green); letter-spacing: .06em; }
+  header .btn { padding: 9px 16px; font-size: 14px; }
 
-  /* Second fold */
-  .info { border-top: 1px solid var(--line); padding: 40px 16px 96px; }
-  .info .wrap { max-width: 900px; margin: 0 auto; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
-  .card h2 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
-  .card ol { padding-left: 20px; color: var(--muted); font-size: 15px; display: grid; gap: 6px; }
-  .card ol b { color: var(--text); }
-  .card table { width: 100%; font-size: 15px; border-collapse: collapse; }
-  .card td { padding: 3px 0; color: var(--muted); }
-  .card td:last-child { text-align: right; color: var(--text); font-weight: 600; }
-  .card .addr { color: var(--muted); font-size: 15px; margin-bottom: 10px; }
-  .card a.link { color: var(--gold); font-weight: 600; font-size: 14px; }
-  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 32px; }
+  .hero { flex: 1; display: flex; align-items: center; padding: 32px 0 40px;
+    background: radial-gradient(circle at 78% 45%, var(--green-soft), transparent 55%); }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; width: 100%; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 14px; }
+  .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--green); }
+  .hero h1 { font-family: var(--serif); font-weight: 800; font-size: clamp(36px, 6vw, 64px); line-height: 1.05; color: var(--ink); }
+  .hero h1 em { font-style: normal; color: var(--green); display: block; }
+  .hero p.lead { color: var(--muted); font-size: 18px; max-width: 480px; margin: 18px 0 26px; }
+  .hero p.lead b { color: var(--ink); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-logo { position: relative; justify-self: center; width: min(360px, 80vw); aspect-ratio: 1; }
+  .hero-logo::before { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 1px dashed var(--green); opacity: .35; }
+  .hero-logo img { width: 100%; height: 100%; background: var(--paper); border-radius: 50%; padding: 6%; box-shadow: 0 20px 50px rgba(40,122,66,.18); }
 
-  /* Popup */
-  .modal {
-    position: fixed; inset: 0; z-index: 20;
-    background: rgba(0,0,0,.75);
-    display: none; align-items: center; justify-content: center; padding: 16px;
-  }
+  .badges { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 28px; max-width: 560px; }
+  .badge { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 10px 8px; text-align: center; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .badge svg { width: 22px; height: 22px; margin: 0 auto 4px; fill: none; stroke: var(--green); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .badge b { display: block; color: var(--ink); font-size: 13px; }
+
+  /* ---------- Fold 2 ---------- */
+  .fold2 { background: var(--paper); border-top: 1px solid var(--line); padding: 48px 0 100px; }
+  .sec-head { text-align: center; margin-bottom: 24px; }
+  .sec-head h2 { font-family: var(--serif); font-size: clamp(24px, 4vw, 32px); color: var(--green); }
+  .rating { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 15px; color: var(--muted); }
+  .stars { color: var(--star); letter-spacing: 2px; font-size: 18px; }
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .review { background: var(--cream); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+  .review p { font-size: 15px; margin: 8px 0 14px; }
+  .review .who { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
+  .review .who span { width: 32px; height: 32px; border-radius: 50%; background: var(--green); color: #fff; display: grid; place-items: center; font-size: 13px; }
+  .review .who small { display: block; color: var(--muted); font-weight: 500; }
+  .more { text-align: center; margin-top: 16px; }
+  .more a { color: var(--green); font-weight: 700; font-size: 14px; }
+
+  .strip { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; margin-top: 40px; }
+  .panel { border: 1px solid var(--line); border-radius: 16px; padding: 22px; background: var(--cream); }
+  .panel h3 { font-family: var(--serif); color: var(--green); font-size: 20px; margin-bottom: 14px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .steps div { font-size: 14px; color: var(--muted); }
+  .steps b { display: block; color: var(--ink); font-size: 15px; margin-top: 4px; }
+  .steps i { font-style: normal; font-family: var(--serif); font-weight: 800; color: #fff; background: var(--green); width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; }
+  .panel table { width: 100%; font-size: 15px; border-collapse: collapse; }
+  .panel td { padding: 3px 0; color: var(--muted); }
+  .panel td:last-child { text-align: right; color: var(--ink); font-weight: 600; }
+  .panel .addr { color: var(--muted); margin-bottom: 8px; }
+  .panel a.link { display: inline-block; margin-top: 10px; color: var(--green); font-weight: 700; font-size: 14px; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 36px; }
+
+  /* ---------- Booking popup ---------- */
+  .modal { position: fixed; inset: 0; z-index: 30; background: rgba(20,32,24,.6); display: none; align-items: center; justify-content: center; padding: 16px; }
   .modal.open { display: flex; }
-  .sheet {
-    position: relative; width: 100%; max-width: 440px; max-height: 100%; overflow-y: auto;
-    background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 24px;
-  }
-  .close {
-    position: absolute; top: 12px; right: 12px; width: 36px; height: 36px;
-    border-radius: 50%; border: 1px solid var(--line); background: var(--bg);
-    color: var(--text); font-size: 20px; cursor: pointer;
-  }
-  .sheet h3 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 28px; text-transform: uppercase; }
-  .sheet .sub { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
-  .sheet form, .step2 { display: grid; gap: 14px; }
+  .sheet { position: relative; width: 100%; max-width: 480px; max-height: 100%; overflow-y: auto; background: var(--paper); border-radius: 20px; padding: 24px; box-shadow: 0 30px 80px rgba(0,0,0,.3); }
+  .close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--cream); color: var(--ink); font-size: 20px; cursor: pointer; }
+  .progress { display: flex; gap: 6px; margin: 4px 48px 18px 0; }
+  .progress span { flex: 1; height: 4px; border-radius: 4px; background: var(--line); }
+  .progress span.on { background: var(--green); }
+  .sheet h3 { font-family: var(--serif); color: var(--green); font-size: 24px; }
+  .sheet .sub { color: var(--muted); font-size: 14px; margin: 2px 0 16px; }
+  .step { display: none; }
+  .step.active { display: grid; gap: 14px; }
+
+  .barbers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .barber { border: 2px solid var(--line); background: var(--cream); border-radius: 14px; padding: 12px; cursor: pointer; text-align: center; font: inherit; color: inherit; }
+  .barber:hover { border-color: var(--green); }
+  .barber.sel { border-color: var(--green); background: var(--green-soft); }
+  .barber .ph { width: 76px; height: 76px; border-radius: 50%; margin: 0 auto 8px; overflow: hidden; background: var(--green); color: #fff; display: grid; place-items: center; font-family: var(--serif); font-weight: 800; font-size: 24px; }
+  .barber .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .barber b { display: block; font-size: 15px; }
+  .barber small { color: var(--muted); font-size: 12px; }
+
   label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
-  input, select {
-    width: 100%; background: var(--bg); color: var(--text);
-    border: 1px solid var(--line); border-radius: 10px;
-    font: 16px Inter, sans-serif; padding: 12px;
-  }
-  input:focus, select:focus { outline: 2px solid var(--gold); border-color: transparent; }
+  input, select { width: 100%; background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; font: 16px Inter, sans-serif; padding: 12px; }
+  input:focus, select:focus { outline: 2px solid var(--green); border-color: transparent; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .paybox { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px; font-size: 14px; }
-  .paybox dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; }
+  .hint { font-size: 12px; color: var(--muted); }
+  .nav { display: grid; grid-template-columns: auto 1fr; gap: 10px; }
+
+  .summary { background: var(--green-soft); border-radius: 12px; padding: 12px 14px; font-size: 14px; display: grid; gap: 2px; }
+  .summary b { color: var(--green-dark); }
+  .paybox { border: 1px solid var(--line); border-radius: 12px; padding: 14px; font-size: 14px; }
+  .paybox dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin-top: 8px; }
   .paybox dt { color: var(--muted); }
   .paybox dd { font-weight: 600; }
   .paybox .ref { margin-top: 8px; color: var(--muted); }
-  .paybox .ref b { color: var(--gold); }
-  .copy { background: none; border: 1px solid var(--line); color: var(--gold); border-radius: 6px; font-size: 12px; padding: 1px 8px; margin-left: 6px; cursor: pointer; }
-  .summary { font-size: 15px; }
-  .summary b { color: var(--gold); }
-  .step2 { display: none; }
-  .sheet.paid form { display: none; }
-  .sheet.paid .step2 { display: grid; }
+  .copy { background: none; border: 1px solid var(--line); color: var(--green); border-radius: 6px; font-size: 12px; padding: 1px 8px; margin-left: 6px; cursor: pointer; }
 
-  /* Floating WhatsApp */
-  .fab {
-    position: fixed; right: 16px; bottom: 16px; z-index: 10;
-    width: 58px; height: 58px; border-radius: 50%;
-    background: var(--wa); display: grid; place-items: center;
-    box-shadow: 0 6px 20px rgba(0,0,0,.4);
-  }
+  .fab { position: fixed; right: 16px; bottom: 16px; z-index: 20; width: 58px; height: 58px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
   .fab svg { width: 30px; height: 30px; fill: #fff; }
 
+  @media (max-width: 820px) {
+    .hero { padding: 20px 0 28px; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 18px; text-align: center; }
+    .hero-logo { order: -1; width: 150px; }
+    .hero-logo::before { inset: -8px; }
+    .eyebrow { justify-content: center; }
+    .eyebrow::before { display: none; }
+    .hero p.lead { margin: 12px auto 20px; font-size: 16px; }
+    .ctas { justify-content: center; }
+    .badges { margin: 20px auto 0; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .badge { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; align-items: center; text-align: left; padding: 8px 10px; font-size: 11px; line-height: 1.3; }
+    .badge svg { grid-row: span 2; margin: 0; }
+    .badge b { font-size: 13px; }
+    .reviews { grid-template-columns: 1fr; }
+    .strip { grid-template-columns: 1fr; }
+  }
   @media (max-width: 420px) {
-    .logo { width: 110px; height: 110px; }
-    .hero p { font-size: 16px; }
-    .ctas .btn { width: 100%; }
+    .ctas .btn { flex: 1; padding: 14px 16px; }
+    header .btn span { display: none; }
+    .steps { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4.1-4.9-4.3-.1-.2-1.2-1.6-1.2-3s.7-2.2 1-2.5c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.2.5.4.1.1.1.7-.1 1.3Z"/></symbol>
 </svg>
 
 <div class="fold">
-  <div class="banner">📍 300A Bradford Rd, Huddersfield · Open 7 days</div>
-  <main class="hero">
-    <img class="logo" src="logo.svg" alt="Fresh Prince Barbers">
-    <h1>Pick your time.<br><em>Skip the wait.</em></h1>
-    <p>Pay just <b>£5 extra</b> to lock in your slot and walk straight into the chair.</p>
-    <div class="ctas">
-      <button class="btn btn-gold js-open" type="button">Pick my time</button>
-      <a class="btn btn-wa js-wa" href="#"><svg class="wa-ico"><use href="#wa"/></svg>WhatsApp us</a>
+  <div class="banner">👑 Skip the queue: priority slots just £5 extra</div>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="#"><img src="logo.webp" alt=""><span>FRESH PRINCE</span></a>
+      <a class="btn btn-wa js-wa" href="#"><svg class="ico"><use href="#wa"/></svg><span>WhatsApp</span></a>
     </div>
-    <a class="scroll-hint" href="#info">How it works ↓</a>
+  </header>
+
+  <main class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Barbers · Huddersfield</div>
+        <h1>Pick your time.<em>Skip the wait.</em></h1>
+        <p class="lead">Choose your barber and slot, pay just <b>£5 extra</b> to lock it in, and walk straight into the chair.</p>
+        <div class="ctas">
+          <button class="btn btn-green js-open" type="button">Book priority slot</button>
+          <a class="btn btn-line" href="#reviews">See reviews</a>
+        </div>
+        <div class="badges">
+          <div class="badge"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><b>Reviewed</b>on Google</div>
+          <div class="badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>No waiting</b>walk right in</div>
+          <div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><b>Open 7 days</b>9am–7pm</div>
+          <div class="badge"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><b>Only £5</b>to reserve</div>
+        </div>
+      </div>
+      <div class="hero-logo"><img src="logo.webp" alt="Fresh Prince Barbers logo"></div>
+    </div>
   </main>
 </div>
 
-<section class="info" id="info">
+<section class="fold2" id="reviews">
   <div class="wrap">
-    <div class="card">
-      <h2>How it works</h2>
-      <ol>
-        <li><b>Pick your time</b> in the booking form.</li>
-        <li><b>Pay £5</b> by bank transfer or PayPal.</li>
-        <li><b>Walk straight in.</b> Pay for your cut in the shop.</li>
-      </ol>
+    <div class="sec-head">
+      <h2>What our customers say</h2>
+      <div class="rating"><span class="stars">★★★★★</span><span id="ratingText"></span></div>
     </div>
-    <div class="card">
-      <h2>Find us</h2>
-      <p class="addr">300A Bradford Road, Huddersfield</p>
-      <table>
-        <tr><td>Mon – Sat</td><td>9:00am – 7:00pm</td></tr>
-        <tr><td>Sunday</td><td>10:00am – 5:30pm</td></tr>
-      </table>
-      <p style="margin-top:10px"><a class="link" href="https://share.google/h16wno0VXVLxXwCt4" target="_blank" rel="noopener">Open in Google Maps →</a></p>
+    <div class="reviews" id="reviewList"></div>
+    <div class="more"><a href="https://share.google/h16wno0VXVLxXwCt4" target="_blank" rel="noopener">Read all reviews on Google →</a></div>
+
+    <div class="strip">
+      <div class="panel">
+        <h3>How it works</h3>
+        <div class="steps">
+          <div><i>1</i><b>Pick barber &amp; time</b>At least 2 hours ahead.</div>
+          <div><i>2</i><b>Pay £5</b>Bank transfer or PayPal.</div>
+          <div><i>3</i><b>Walk straight in</b>Pay for your cut in the shop.</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Find us</h3>
+        <p class="addr">300A Bradford Road, Huddersfield</p>
+        <table>
+          <tr><td>Mon – Sat</td><td>9:00am – 7:00pm</td></tr>
+          <tr><td>Sunday</td><td>10:00am – 5:30pm</td></tr>
+        </table>
+        <a class="link" href="https://share.google/h16wno0VXVLxXwCt4" target="_blank" rel="noopener">Open in Google Maps →</a>
+      </div>
     </div>
+    <footer>© <span id="year"></span> Fresh Prince Barbers Huddersfield</footer>
   </div>
-  <footer>© <span id="year"></span> Fresh Prince Barbers Huddersfield</footer>
 </section>
 
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="sheet" id="sheet">
+<!-- Booking popup -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="stepTitle">
+  <div class="sheet">
     <button class="close js-close" type="button" aria-label="Close">×</button>
+    <div class="progress"><span></span><span></span><span></span></div>
 
-    <form id="bookForm">
-      <div>
-        <h3 id="modalTitle">Pick your time</h3>
-        <p class="sub">Priority slot: +£5 on top of your cut.</p>
-      </div>
+    <div class="step" data-step="1">
+      <div><h3 id="stepTitle">Choose your barber</h3><p class="sub">Priority slot: +£5 on top of your cut.</p></div>
+      <div class="barbers" id="barberList"></div>
+    </div>
+
+    <form class="step" data-step="2" id="timeForm">
+      <div><h3>Pick your time</h3><p class="sub" id="barberChosen"></p></div>
       <label>Your name
         <input name="name" required autocomplete="name" placeholder="e.g. Will Smith">
       </label>
       <div class="row">
-        <label>Day
-          <input type="date" name="date" id="date" required>
-        </label>
-        <label>Time
-          <select name="time" id="time" required></select>
-        </label>
+        <label>Day <input type="date" name="date" id="date" required></label>
+        <label>Time <select name="time" id="time" required></select></label>
       </div>
-      <button class="btn btn-gold" type="submit">Next: pay £5</button>
+      <p class="hint">Bookings must be made at least 2 hours in advance.</p>
+      <div class="nav">
+        <button class="btn btn-ghost js-back" type="button">←</button>
+        <button class="btn btn-green" type="submit">Next: pay £5</button>
+      </div>
     </form>
 
-    <div class="step2">
-      <div>
-        <h3>Lock it in</h3>
-        <p class="summary" id="summary"></p>
-      </div>
+    <div class="step" data-step="3">
+      <div><h3>Lock it in</h3><p class="sub">Send £5 to hold your slot.</p></div>
+      <div class="summary" id="summary"></div>
       <div class="paybox">
         <strong>🏦 Bank transfer</strong>
-        <dl style="margin-top:8px">
+        <dl>
           <dt>Name</dt><dd id="bankName"></dd>
           <dt>Sort code</dt><dd><span id="sortCode"></span><button class="copy" data-copy="sortCode" type="button">Copy</button></dd>
           <dt>Account</dt><dd><span id="accNo"></span><button class="copy" data-copy="accNo" type="button">Copy</button></dd>
         </dl>
         <p class="ref">Reference: <b>your name</b></p>
       </div>
-      <a class="btn btn-gold" id="paypalLink" href="#" target="_blank" rel="noopener">Or pay £5 with PayPal</a>
-      <button class="btn btn-wa" id="sendWa" type="button"><svg class="wa-ico"><use href="#wa"/></svg>I've paid, send booking</button>
-      <button class="btn btn-ghost" id="back" type="button">← Change time</button>
+      <a class="btn btn-line" id="paypalLink" href="#" target="_blank" rel="noopener">Or pay £5 with PayPal</a>
+      <button class="btn btn-wa" id="sendWa" type="button"><svg class="ico"><use href="#wa"/></svg>I've paid, send booking</button>
+      <button class="btn btn-ghost js-back" type="button">← Change time</button>
     </div>
   </div>
 </div>
@@ -226,99 +285,154 @@
 <a class="fab js-wa" href="#" aria-label="Chat on WhatsApp"><svg><use href="#wa"/></svg></a>
 
 <script>
-  // ===== EDIT THESE DETAILS =====
+  // ===================== EDIT THESE DETAILS =====================
   const SHOP = {
     whatsapp: "447000000000",          // WhatsApp number, international format, no + or spaces
     bankName: "FRESH PRINCE BARBERS",  // Account holder name
     sortCode: "00-00-00",
     accountNumber: "00000000",
     paypal: "https://paypal.me/yourname/5GBP", // PayPal.me link with amount
+    noticeMinutes: 120,                // earliest booking = now + 2 hours
     slotMinutes: 30,
     hours: { // 24h open/close per day (0 = Sunday)
       0: ["10:00", "17:30"],
       1: ["09:00", "19:00"], 2: ["09:00", "19:00"], 3: ["09:00", "19:00"],
       4: ["09:00", "19:00"], 5: ["09:00", "19:00"], 6: ["09:00", "19:00"]
-    }
+    },
+    // Barbers: add a photo URL/path (e.g. "barbers/ali.jpg") or leave "" to show initials
+    barbers: [
+      { name: "Barber 1", role: "Fades & skin fades", photo: "" },
+      { name: "Barber 2", role: "Beards & line-ups", photo: "" },
+      { name: "Barber 3", role: "Scissor cuts", photo: "" }
+    ],
+    // Google rating + a few real reviews copied from your Google Business Profile
+    rating: "Google reviews",         // e.g. "4.9 from 120 Google reviews"
+    reviews: [
+      { text: "[Paste a real Google review here]", name: "Customer name", when: "Google review" },
+      { text: "[Paste a real Google review here]", name: "Customer name", when: "Google review" },
+      { text: "[Paste a real Google review here]", name: "Customer name", when: "Google review" }
+    ]
   };
-  // ==============================
+  // ===============================================================
 
   const $ = id => document.getElementById(id);
+  const el = (tag, props = {}, ...kids) => { const n = Object.assign(document.createElement(tag), props); n.append(...kids); return n; };
+  const initials = s => s.split(/\s+/).map(w => w[0]).join("").slice(0, 2).toUpperCase();
   const waUrl = text => "https://wa.me/" + SHOP.whatsapp + (text ? "?text=" + encodeURIComponent(text) : "");
 
+  // Static content
   document.querySelectorAll(".js-wa").forEach(a => {
     a.href = waUrl("Hi Fresh Prince, I'd like to book a priority slot (+£5).");
-    a.target = "_blank";
-    a.rel = "noopener";
+    a.target = "_blank"; a.rel = "noopener";
   });
   $("bankName").textContent = SHOP.bankName;
   $("sortCode").textContent = SHOP.sortCode;
   $("accNo").textContent = SHOP.accountNumber;
   $("paypalLink").href = SHOP.paypal;
   $("year").textContent = new Date().getFullYear();
+  $("ratingText").textContent = SHOP.rating;
 
-  document.querySelectorAll(".copy").forEach(btn => {
-    btn.addEventListener("click", () => {
-      navigator.clipboard?.writeText($(btn.dataset.copy).textContent).then(() => {
-        btn.textContent = "Copied";
-        setTimeout(() => (btn.textContent = "Copy"), 1500);
-      });
-    });
+  SHOP.reviews.forEach(r => {
+    $("reviewList").append(el("div", { className: "review" },
+      el("div", { className: "stars", textContent: "★★★★★" }),
+      el("p", { textContent: "“" + r.text + "”" }),
+      el("div", { className: "who" }, el("span", { textContent: initials(r.name) }),
+        el("div", {}, r.name, el("small", { textContent: r.when })))
+    ));
   });
 
-  // Popup open/close
-  const modal = $("modal"), sheet = $("sheet");
-  const openModal = () => { modal.classList.add("open"); sheet.classList.remove("paid"); };
+  document.querySelectorAll(".copy").forEach(btn => btn.addEventListener("click", () => {
+    navigator.clipboard?.writeText($(btn.dataset.copy).textContent).then(() => {
+      btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy"), 1500);
+    });
+  }));
+
+  // Popup + steps
+  const modal = $("modal");
+  const booking = {};
+  let step = 1;
+  function show(n) {
+    step = n;
+    document.querySelectorAll(".step").forEach(s => s.classList.toggle("active", +s.dataset.step === n));
+    document.querySelectorAll(".progress span").forEach((s, i) => s.classList.toggle("on", i < n));
+    modal.querySelector(".sheet").scrollTop = 0;
+  }
+  const openModal = () => { modal.classList.add("open"); show(1); fillSlots(); };
   const closeModal = () => modal.classList.remove("open");
   document.querySelectorAll(".js-open").forEach(b => b.addEventListener("click", openModal));
   document.querySelectorAll(".js-close").forEach(b => b.addEventListener("click", closeModal));
+  document.querySelectorAll(".js-back").forEach(b => b.addEventListener("click", () => show(step - 1)));
   modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
-  // Date + time slots
+  // Step 1: barber
+  [...SHOP.barbers, { name: "Any barber", role: "First available", photo: "", any: true }].forEach(b => {
+    const ph = el("div", { className: "ph" });
+    if (b.photo) ph.append(el("img", { src: b.photo, alt: b.name, loading: "lazy" }));
+    else ph.textContent = b.any ? "★" : initials(b.name);
+    const card = el("button", { className: "barber", type: "button" }, ph, el("b", { textContent: b.name }), el("small", { textContent: b.role }));
+    card.addEventListener("click", () => {
+      document.querySelectorAll(".barber").forEach(c => c.classList.remove("sel"));
+      card.classList.add("sel");
+      booking.barber = b.name;
+      $("barberChosen").textContent = "With " + b.name + ". Priority slot +£5.";
+      show(2);
+    });
+    $("barberList").append(card);
+  });
+
+  // Step 2: time (min 2 hours notice)
   const dateInput = $("date"), timeSelect = $("time");
   const pad = n => String(n).padStart(2, "0");
   const toISO = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
   const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
-  dateInput.min = toISO(new Date());
-  dateInput.value = toISO(new Date());
 
-  function fillSlots() {
-    const [y, m, d] = dateInput.value.split("-").map(Number);
-    const day = new Date(y, m - 1, d);
+  function slotsFor(day) {
     const [open, close] = SHOP.hours[day.getDay()];
-    const now = new Date();
-    const isToday = toISO(day) === toISO(now);
-    const earliest = now.getHours() * 60 + now.getMinutes() + 30; // at least 30 min notice
-
-    timeSelect.innerHTML = "";
+    const earliest = new Date(Date.now() + SHOP.noticeMinutes * 60000);
+    const out = [];
     for (let t = toMin(open); t + SHOP.slotMinutes <= toMin(close); t += SHOP.slotMinutes) {
-      if (isToday && t < earliest) continue;
-      const label = pad(Math.floor(t / 60)) + ":" + pad(t % 60);
-      timeSelect.add(new Option(label, label));
+      const at = new Date(day.getFullYear(), day.getMonth(), day.getDate(), Math.floor(t / 60), t % 60);
+      if (at >= earliest) out.push(pad(at.getHours()) + ":" + pad(at.getMinutes()));
     }
-    if (!timeSelect.options.length) {
-      timeSelect.add(new Option("None left today, pick another day", ""));
+    return out;
+  }
+  function fillSlots() {
+    // Default to the first day that still has a bookable slot
+    if (!dateInput.value) {
+      const d = new Date();
+      while (!slotsFor(d).length) d.setDate(d.getDate() + 1);
+      dateInput.value = toISO(d);
     }
+    dateInput.min = toISO(new Date());
+    const [y, m, dd] = dateInput.value.split("-").map(Number);
+    const slots = slotsFor(new Date(y, m - 1, dd));
+    timeSelect.innerHTML = "";
+    slots.forEach(s => timeSelect.add(new Option(s, s)));
+    if (!slots.length) timeSelect.add(new Option("No slots left, pick another day", ""));
   }
   dateInput.addEventListener("change", fillSlots);
-  fillSlots();
 
-  // Step 1 -> step 2 -> WhatsApp
-  let booking = null;
-  $("bookForm").addEventListener("submit", e => {
+  $("timeForm").addEventListener("submit", e => {
     e.preventDefault();
     const f = new FormData(e.target);
-    const niceDate = new Date(f.get("date") + "T00:00").toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
-    booking = { name: f.get("name"), date: niceDate, time: f.get("time") };
-    $("summary").innerHTML = "";
-    $("summary").append(booking.date + " at ", Object.assign(document.createElement("b"), { textContent: booking.time }), ". Send £5 to hold it:");
-    sheet.classList.add("paid");
+    booking.name = f.get("name").trim();
+    booking.time = f.get("time");
+    booking.date = new Date(f.get("date") + "T00:00").toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
+    $("summary").replaceChildren(
+      el("div", {}, "Barber: ", el("b", { textContent: booking.barber })),
+      el("div", {}, "When: ", el("b", { textContent: booking.date + " at " + booking.time })),
+      el("div", {}, "Name: ", el("b", { textContent: booking.name }))
+    );
+    show(3);
   });
-  $("back").addEventListener("click", () => sheet.classList.remove("paid"));
+
+  // Step 3: WhatsApp
   $("sendWa").addEventListener("click", () => {
     const msg =
       "Hi Fresh Prince, I'd like to book a priority slot (+£5).\n\n" +
       "Name: " + booking.name + "\n" +
+      "Barber: " + booking.barber + "\n" +
       "Day: " + booking.date + "\n" +
       "Time: " + booking.time + "\n" +
       "£5 sent ✅";
