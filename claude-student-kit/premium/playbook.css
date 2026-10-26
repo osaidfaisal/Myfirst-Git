@@ -1,0 +1,42 @@
+:root {
+  --green: #0b4d2c; --green-soft: #e6f0ea; --gold: #c8962e; --gold-soft: #fbf3e2;
+  --ink: #1b2420; --muted: #5b6862; --line: #d9e2dc;
+}
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; color: var(--ink); font: 12.5px/1.55 Inter, system-ui, sans-serif; background: #fff; }
+main, .cover { max-width: 7.2in; margin: 0 auto; }
+h1, h2, h3, h4 { font-family: Fraunces, Georgia, serif; color: var(--green); line-height: 1.15; }
+a { color: inherit; text-decoration: none; }
+
+.cover { min-height: 9.6in; display: flex; flex-direction: column; justify-content: center; page-break-after: always; }
+.cover .kicker { font: 600 11px/1 Inter; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.cover h1 { font-size: 46px; font-weight: 800; margin: 14px 0 10px; }
+.cover .sub { font-size: 16px; color: var(--muted); max-width: 5.6in; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 26px 0; }
+.stats div { background: var(--green); color: #d6e6dc; border-radius: 12px; padding: 14px; font-size: 12px; }
+.stats b { display: block; font: 800 32px/1 Fraunces, serif; color: var(--gold); margin-bottom: 4px; }
+.toc { border-top: 2px solid var(--green); padding-top: 10px; }
+.toc h4 { margin: 0 0 6px; font-size: 15px; }
+.toc ol { columns: 2; margin: 0; padding-left: 18px; font-size: 12.5px; }
+.toc li { margin-bottom: 3px; }
+
+h2 { font-size: 24px; font-weight: 800; margin: 26px 0 10px; padding-top: 8px; border-top: 3px solid var(--gold); page-break-after: avoid; }
+main > h2:not(:first-child) { page-break-before: always; }
+p { margin: 0 0 8px; }
+ul { margin: 4px 0 10px; padding-left: 20px; }
+li { margin-bottom: 3px; }
+.p { break-inside: avoid; margin: 0 0 12px; }
+.p h3 { font-size: 14px; font-weight: 600; margin: 0 0 4px; display: flex; gap: 8px; align-items: baseline; }
+.no { font: 700 10.5px/1 "JetBrains Mono", monospace; color: var(--gold); }
+.prompt {
+  font: 11px/1.55 "JetBrains Mono", ui-monospace, monospace; background: #f7f8f6; border-left: 3px solid var(--gold);
+  padding: 8px 10px; border-radius: 0 6px 6px 0; white-space: pre-wrap; margin: 0;
+}
+.fill { background: #fff3c4; border-radius: 3px; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 11.5px; break-inside: avoid; }
+th, td { border: 1px solid var(--line); padding: 9px 7px; text-align: left; vertical-align: top; }
+th { background: var(--green-soft); color: var(--green); font-weight: 700; }
+td { height: 30px; }
+@page { size: letter; }
+@media screen { body { padding: 24px 16px; } }

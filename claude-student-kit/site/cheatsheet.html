@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Study Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #0b4d2c;
+    --green-soft: #e6f0ea;
+    --gold: #c8962e;
+    --gold-soft: #fbf3e2;
+    --ink: #1b2420;
+    --muted: #5b6862;
+    --line: #d9e2dc;
+    --paper: #ffffff;
+    --bg: #f4f1ea;
+    --red: #a23b2a;
+    --red-soft: #fbeae6;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 12.5px/1.45 Inter, system-ui, sans-serif; }
+  .page {
+    width: 8.5in; min-height: 11in; margin: 24px auto; padding: 0.45in 0.55in 0.7in;
+    background: var(--paper); box-shadow: 0 2px 18px rgba(0,0,0,.08); position: relative;
+  }
+  .page + .page { page-break-before: always; }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; color: var(--green); margin: 0; line-height: 1.15; }
+  h1 { font-size: 34px; font-weight: 800; }
+  h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+  h3 { font-size: 14.5px; font-weight: 600; margin-bottom: 4px; }
+  p { margin: 0 0 8px; }
+  .kicker { font: 600 11px/1 Inter; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .lede { font-size: 14.5px; color: var(--muted); max-width: 6in; margin-top: 8px; }
+  .footer { position: absolute; left: .55in; right: .55in; bottom: .3in; display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 6px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 8px 11px; break-inside: avoid; }
+  .card.green { background: var(--green-soft); border-color: #c7dccf; }
+  .card.gold { background: var(--gold-soft); border-color: #eedbb0; }
+  .card.red { background: var(--red-soft); border-color: #efc9c0; }
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 0; }
+  .steps li { counter-increment: s; position: relative; padding: 0 0 8px 38px; }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--green); color: #fff; font: 700 13px/26px Inter; text-align: center;
+  }
+  .steps b { color: var(--green); }
+  .prompt {
+    font: 10.5px/1.45 "JetBrains Mono", ui-monospace, monospace; background: #f7f8f6; border-left: 3px solid var(--gold);
+    padding: 5px 8px; border-radius: 0 6px 6px 0; white-space: pre-wrap; margin: 3px 0 0;
+  }
+  .fill { background: #fff3c4; padding: 0 3px; border-radius: 3px; }
+  .chai { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0 12px; }
+  .chai div { background: var(--green); color: #fff; border-radius: 10px; padding: 8px 10px; }
+  .chai .l { font: 800 30px/1 Fraunces, serif; color: var(--gold); }
+  .chai .t { font-weight: 700; margin-top: 4px; }
+  .chai .d { font-size: 11.5px; opacity: .88; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tag { display: inline-block; font: 700 10px/1 Inter; letter-spacing: .08em; text-transform: uppercase; padding: 4px 7px; border-radius: 4px; margin-bottom: 6px; }
+  .tag.bad { background: var(--red-soft); color: var(--red); }
+  .tag.good { background: var(--green-soft); color: var(--green); }
+  .num { display: inline-block; min-width: 20px; font-weight: 700; color: var(--gold); }
+  ul.tight { margin: 4px 0 0; padding-left: 18px; }
+  ul.tight li { margin-bottom: 3px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  td, th { border-bottom: 1px solid var(--line); padding: 3px 6px; text-align: left; vertical-align: top; }
+  th { font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .check { display: inline-block; width: 12px; height: 12px; border: 1.5px solid var(--green); border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  .hero-band { background: var(--green); color: #fff; margin: -0.45in -0.55in 18px; padding: .45in .55in .35in; }
+  .hero-band h1 { color: #fff; }
+  .hero-band .lede { color: #d6e6dc; }
+  .hero-band .kicker { color: var(--gold); }
+  .pill { display: inline-block; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 99px; padding: 4px 10px; font-size: 11.5px; margin: 10px 6px 0 0; }
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; box-shadow: none; width: 8.5in; height: 11in; min-height: 0; overflow: hidden; }
+    @page { size: letter; margin: 0; }
+  }
+  @media screen and (max-width: 860px) {
+    .page { width: auto; margin: 0 0 12px; padding: 24px 16px 60px; min-height: 0; }
+    .hero-band { margin: -24px -16px 18px; padding: 28px 16px; }
+    .grid2, .vs { grid-template-columns: 1fr; }
+    .chai { grid-template-columns: 1fr 1fr; }
+    .footer { left: 16px; right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<section class="page">
+  <div class="hero-band">
+    <div class="kicker">Free cheat sheet · For Pakistani students at UC Davis</div>
+    <h1>Study smarter with Claude:<br>a beginner's guide on the free plan</h1>
+    <p class="lede">No tech background needed and no subscription. Follow the steps below in order and you can save 5 or more hours every week on readings, assignments, emails and planning.</p>
+    <span class="pill">✓ Works on the free plan</span><span class="pill">✓ Phone or laptop</span><span class="pill">✓ English, Urdu or Roman Urdu</span>
+  </div>
+
+  <h2>Part 1: Set up Claude in 5 minutes</h2>
+  <ol class="steps">
+    <li><b>Open Claude.</b> On a laptop, go to <b>claude.ai</b>. On a phone, install the free <b>Claude</b> app (made by Anthropic) from the App Store or Google Play.</li>
+    <li><b>Sign up for free.</b> Tap "Continue with Google" or enter your email. Skip any paid-plan screen, because the free plan is all you need for this guide.</li>
+    <li><b>Find the message box.</b> It sits at the bottom of the screen. Type there just as you would in WhatsApp, then press Enter or tap the arrow.</li>
+    <li><b>Find the "+" or 📎 button.</b> It lets you attach a PDF, a screenshot or a photo of your notes, and Claude can read all of these.</li>
+    <li><b>Phone tip:</b> tap the 🎤 microphone on your keyboard and just <i>talk</i> to type your question. This is great when you're tired or walking to class.</li>
+    <li><b>Say hi to test it.</b> Paste this message as your first one:
+      <div class="prompt">I'm a <span class="fill">first-year</span> student at UC Davis from Pakistan, majoring in <span class="fill">Computer Science</span>. I'm new to AI tools. In 5 short bullet points, tell me the most useful ways you can help me this quarter.</div>
+    </li>
+  </ol>
+
+  <div class="grid2" style="margin-top:6px">
+    <div class="card gold">
+      <h3>💡 The one rule to remember</h3>
+      <p style="margin:0">Treat Claude like a <b>smart senior student or a TA</b> sitting next to you, not like Google. Talk to it in full sentences, give it background and ask follow-up questions. If an answer isn't right, reply "make it simpler" or "shorter" or "give an example". You don't need to start over.</p>
+    </div>
+    <div class="card green">
+      <h3>🗣️ Urdu is fine too</h3>
+      <p style="margin:0">Claude understands Urdu and Roman Urdu. Try: <i>"Mujhe recursion bilkul samajh nahi aaya, Urdu mein simple example ke saath samjhao."</i> You can also ask it to explain something in Urdu first and then in English.</p>
+    </div>
+  </div>
+
+  <div class="footer"><span>Claude Study Cheat Sheet · Page 1 of 4</span><span>Not affiliated with UC Davis or Anthropic</span></div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page">
+  <div class="kicker">Part 2</div>
+  <h2>The CHAI formula ☕ for great answers every time</h2>
+  <p>Most beginners type 4 words and get a generic answer. To get an answer that fits <i>you</i>, include these 4 things in your message:</p>
+
+  <div class="chai">
+    <div><div class="l">C</div><div class="t">Context</div><div class="d">Who are you? Which class, what level?</div></div>
+    <div><div class="l">H</div><div class="t">Help needed</div><div class="d">What exactly do you want done?</div></div>
+    <div><div class="l">A</div><div class="t">Add details</div><div class="d">Deadline, word count, your notes, rubric</div></div>
+    <div><div class="l">I</div><div class="t">Ideal format</div><div class="d">Bullets? Table? Quiz? 5 lines max?</div></div>
+  </div>
+
+  <div class="vs">
+    <div class="card red">
+      <span class="tag bad">Weak prompt</span>
+      <div class="prompt" style="border-color:var(--red)">explain supply and demand</div>
+      <p style="margin-top:8px;font-size:12px;color:var(--muted)">This gets a textbook-style answer that is long, generic and hard to revise from.</p>
+    </div>
+    <div class="card green">
+      <span class="tag good">CHAI prompt</span>
+      <div class="prompt"><b>C:</b> I'm a first-year in ECN 1A at UC Davis.
+<b>H:</b> Explain supply and demand so I can answer midterm questions.
+<b>A:</b> My midterm is in 4 days. Use examples about chai, rent in Davis or gas prices.
+<b>I:</b> 5 bullet points, then 3 practice questions with answers hidden at the bottom.</div>
+    </div>
+  </div>
+
+  <h2 style="margin-top:18px">Part 3: The magic follow-ups</h2>
+  <p>The first answer is only a draft. These short replies make it better:</p>
+  <table>
+    <tr><th style="width:42%">Type this…</th><th>…when</th></tr>
+    <tr><td><span class="prompt" style="display:block;margin:0">Explain like I'm 12.</span></td><td>The answer is too technical</td></tr>
+    <tr><td><span class="prompt" style="display:block;margin:0">Give me a real-life example.</span></td><td>You understand the words but not the idea</td></tr>
+    <tr><td><span class="prompt" style="display:block;margin:0">Quiz me one question at a time.</span></td><td>You want to check whether you've actually learned it</td></tr>
+    <tr><td><span class="prompt" style="display:block;margin:0">What did I get wrong, and why?</span></td><td>After you answer its quiz questions</td></tr>
+    <tr><td><span class="prompt" style="display:block;margin:0">Make it shorter. Max 5 lines.</span></td><td>The answer is too long</td></tr>
+    <tr><td><span class="prompt" style="display:block;margin:0">Ask me 3 questions first before you answer.</span></td><td>You aren't sure what to include and want Claude to interview you</td></tr>
+    <tr><td><span class="prompt" style="display:block;margin:0">Are you sure? Double-check that.</span></td><td>Anything involving facts, numbers, dates or citations</td></tr>
+  </table>
+
+  <div class="card gold" style="margin-top:14px">
+    <h3>⚠️ Claude can be wrong</h3>
+    <p style="margin:0">AI sometimes states wrong facts confidently, and it can even make up sources. <b>Always verify</b> deadlines, formulas, citations, visa rules and anything important against your syllabus, Canvas, your professor or official UC Davis offices.</p>
+  </div>
+
+  <div class="footer"><span>Claude Study Cheat Sheet · Page 2 of 4</span><span>Not affiliated with UC Davis or Anthropic</span></div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page">
+  <div class="kicker">Part 4</div>
+  <h2>12 copy-paste prompts that save hours</h2>
+  <p style="margin-bottom:12px">Copy a prompt, replace the <span class="fill">yellow parts</span> with your own details, and send it.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="num">01</span>Understand a confusing lecture</h3>
+      <div class="prompt">📎 [attach slides or a photo of notes]
+I didn't understand this lecture on <span class="fill">topic</span>. Explain the 3 most important ideas simply, with one example each. Then tell me what's most likely to be on the exam.</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">02</span>Turn notes into a quiz</h3>
+      <div class="prompt">📎 [attach notes]
+Make 10 practice questions from these notes: 5 multiple-choice and 5 short-answer. Ask me one at a time and wait for my answer before giving feedback.</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">03</span>Read a long PDF in 10 minutes</h3>
+      <div class="prompt">📎 [attach reading]
+Summarize this reading for <span class="fill">class</span>: the main argument, 3 key points with page numbers, and 2 questions I could raise in discussion section.</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">04</span>Plan the 10-week quarter</h3>
+      <div class="prompt">📎 [attach syllabi]
+Here are my syllabi. List every exam and deadline by week (1–10 plus finals). Warn me about weeks where several things are due at once.</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">05</span>Get essay feedback (not a ghostwriter)</h3>
+      <div class="prompt">📎 [attach your draft + rubric]
+Don't rewrite this. Act as a strict grader using this rubric. Give me a score, my 3 biggest weaknesses and questions that help me fix them myself.</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">06</span>Email a professor</h3>
+      <div class="prompt">Help me write a short, polite email to Professor <span class="fill">name</span>. I <span class="fill">missed a quiz because I was sick</span> and want to ask about options. Respectful American academic tone, not overly formal, under 120 words.</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">07</span>Prepare for office hours</h3>
+      <div class="prompt">I'm going to office hours for <span class="fill">class</span>. I'm stuck on <span class="fill">problem</span>. Help me write 3 clear, specific questions so I don't waste the professor's time.</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">08</span>Understand code errors</h3>
+      <div class="prompt">I'm learning <span class="fill">Python</span>. Here is my code and the error message. Don't just fix it. Explain what the error means, give me a hint, and let me try again.
+[paste code + error]</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">09</span>Improve a resume line</h3>
+      <div class="prompt">Rewrite this resume bullet for a US internship application. Use a strong action verb and add a number if possible. Give 3 options:
+"<span class="fill">I helped in my uncle's shop in Lahore</span>"</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">10</span>Practice an interview</h3>
+      <div class="prompt">Act as an interviewer for a <span class="fill">software intern</span> role. Ask me one behavioral question at a time. After each of my answers, score it out of 10 and show me how to improve it using the STAR method.</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">11</span>Plan your week around everything</h3>
+      <div class="prompt">Make a weekly schedule table for me. Classes: <span class="fill">list</span>. Campus job: <span class="fill">hours</span>. Include the 5 daily prayers, Jumu'ah on Friday, meals, the gym and 2 study blocks a day. I study best <span class="fill">in the morning</span>.</div>
+    </div>
+    <div class="card">
+      <h3><span class="num">12</span>Explain American "adulting"</h3>
+      <div class="prompt">I'm a new international student from Pakistan. Explain <span class="fill">what a credit score is / how a lease works / how US tipping works</span> in simple words, with mistakes newcomers usually make.</div>
+    </div>
+  </div>
+
+  <div class="footer"><span>Claude Study Cheat Sheet · Page 3 of 4</span><span>Not affiliated with UC Davis or Anthropic</span></div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page">
+  <div class="kicker">Part 5</div>
+  <h2>Get the most out of the free plan</h2>
+  <p>The free plan has a message limit that resets every few hours. These habits help you stay under it:</p>
+  <div class="grid2">
+    <div class="card"><h3>1. Put everything in one message</h3><p style="margin:0">Send one detailed CHAI prompt rather than 6 tiny messages, which use up your limit quickly.</p></div>
+    <div class="card"><h3>2. Start a new chat for each new topic</h3><p style="margin:0">Long chats use more of your limit. When you switch subjects, click <b>"New chat"</b>.</p></div>
+    <div class="card"><h3>3. Upload only the pages you need</h3><p style="margin:0">Attach chapter 4, not the full 300-page textbook. Screenshots of the key pages work too.</p></div>
+    <div class="card"><h3>4. Copy great answers somewhere safe</h3><p style="margin:0">Paste useful answers into Google Docs or Notes so you don't have to ask again.</p></div>
+    <div class="card"><h3>5. Work during off-peak hours</h3><p style="margin:0">If you hit the limit, the app tells you when it resets. Plan your heavy study with Claude around that time.</p></div>
+    <div class="card"><h3>6. Ask for a summary before moving on</h3><p style="margin:0">Before you leave a long chat, type: <i>"Summarize everything we figured out in 10 bullets."</i> Paste that into a new chat to continue.</p></div>
+  </div>
+
+  <div class="card red" style="margin-top:14px">
+    <h3>🛑 Academic integrity: please read this</h3>
+    <ul class="tight">
+      <li><b>Every class has its own AI policy.</b> Check the syllabus, or ask the professor: "Is using AI for <i>brainstorming / feedback / studying</i> allowed?"</li>
+      <li>Submitting AI-written work as your own when it isn't allowed can be treated as <b>academic misconduct</b>. For international students, that can put more than your grade at risk.</li>
+      <li>The safe and smart way: use Claude to <b>explain, quiz, plan and give feedback</b>. You do the actual writing and problem-solving yourself.</li>
+      <li>Never paste other people's private information, exam questions you were told not to share, or passwords into any AI tool.</li>
+    </ul>
+  </div>
+
+  <h2 style="margin-top:16px">Your 7-day Claude challenge</h2>
+  <table>
+    <tr><td style="width:70px"><span class="check"></span><b>Day 1</b></td><td>Sign up and send the "Say hi" prompt from page 1.</td></tr>
+    <tr><td><span class="check"></span><b>Day 2</b></td><td>Upload one lecture's slides and use prompt <b>01</b>.</td></tr>
+    <tr><td><span class="check"></span><b>Day 3</b></td><td>Turn your notes into a quiz with prompt <b>02</b>, and answer every question.</td></tr>
+    <tr><td><span class="check"></span><b>Day 4</b></td><td>Upload all your syllabi and build your quarter plan with prompt <b>04</b>.</td></tr>
+    <tr><td><span class="check"></span><b>Day 5</b></td><td>Make your weekly schedule with prompt <b>11</b> and stick it on your wall.</td></tr>
+    <tr><td><span class="check"></span><b>Day 6</b></td><td>Improve 3 resume bullets with prompt <b>09</b>.</td></tr>
+    <tr><td><span class="check"></span><b>Day 7</b></td><td>Look back on the week: how many hours did you save? Share this cheat sheet with one friend 🤝</td></tr>
+  </table>
+
+  <div class="card green" style="margin-top:14px; display:flex; gap:14px; align-items:center">
+    <div style="font-size:30px">🎁</div>
+    <div>
+      <h3>Want the full Playbook?</h3>
+      <p style="margin:0">This sheet has 12 prompts. The <b>Claude Playbook for Pakistani Students</b> has <b>100+ prompts</b>, a 10-week quarter planner, an internship and OPT-season toolkit, a Ramadan study plan and money templates. Look for the link in your email.</p>
+    </div>
+  </div>
+
+  <div class="footer"><span>Claude Study Cheat Sheet · Page 4 of 4 · Share it freely with friends</span><span>Not affiliated with UC Davis or Anthropic</span></div>
+</section>
+
+</body>
+</html>

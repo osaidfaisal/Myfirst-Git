@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Claude Cheat Sheet</title>
+<meta name="description" content="A free, beginner-friendly cheat sheet that shows Pakistani students at UC Davis how to use Claude's free plan to study smarter and save 5+ hours a week.">
+<meta property="og:title" content="Free: The Claude Study Cheat Sheet for Pakistani Students">
+<meta property="og:description" content="12 copy-paste prompts, the CHAI formula and a 7-day challenge. Works on the free plan, no tech skills needed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #0b4d2c; --green-2: #0f6a3d; --green-soft: #e6f0ea;
+    --gold: #c8962e; --gold-soft: #fbf3e2;
+    --ink: #1b2420; --muted: #5b6862; --line: #dfe6e1; --bg: #fbfaf6; --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Inter, system-ui, sans-serif; }
+  a { color: var(--green-2); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.12; margin: 0; }
+  h2 { font-size: clamp(26px, 4vw, 36px); color: var(--green); margin-bottom: 14px; }
+  .kicker { font: 600 12px/1 Inter; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+
+  /* top bar */
+  .bar { background: var(--green); color: #d6e6dc; font-size: 13.5px; text-align: center; padding: 8px 16px; }
+  .bar b { color: #fff; }
+
+  /* hero */
+  .hero { background: radial-gradient(1200px 500px at 85% -10%, #14794a 0%, transparent 60%), var(--green); color: #fff; padding: 56px 0 72px; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+  .hero h1 { font-size: clamp(34px, 5.4vw, 56px); font-weight: 800; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero .sub { font-size: 18.5px; color: #d6e6dc; margin: 18px 0 22px; max-width: 34em; }
+  .ticks { list-style: none; padding: 0; margin: 0 0 6px; display: grid; gap: 8px; }
+  .ticks li::before { content: "✓"; color: var(--gold); font-weight: 700; margin-right: 10px; }
+
+  /* form card */
+  .form-card { background: var(--card); color: var(--ink); border-radius: 18px; padding: 26px; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+  .form-card h3 { font-size: 24px; color: var(--green); }
+  .form-card p.small { color: var(--muted); font-size: 14px; margin: 6px 0 16px; }
+  label { display: block; font-size: 13.5px; font-weight: 600; margin: 12px 0 5px; }
+  input, select {
+    width: 100%; font: inherit; font-size: 16px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink);
+  }
+  input:focus, select:focus { outline: none; border-color: var(--green-2); box-shadow: 0 0 0 3px rgba(15,106,61,.15); }
+  .btn {
+    display: inline-block; width: 100%; margin-top: 16px; border: 0; cursor: pointer; text-align: center; text-decoration: none;
+    background: var(--gold); color: #1d1405; font: 700 17px/1 Inter; padding: 16px 18px; border-radius: 12px; transition: transform .08s, filter .15s;
+  }
+  .btn:hover { filter: brightness(1.05); }
+  .btn:active { transform: translateY(1px); }
+  .btn[disabled] { opacity: .7; cursor: wait; }
+  .fine { font-size: 12.5px; color: var(--muted); margin-top: 10px; text-align: center; }
+  .err { color: #a23b2a; font-size: 14px; margin-top: 8px; display: none; }
+  .hp { position: absolute; left: -9999px; }
+
+  section.block { padding: 72px 0; }
+  .alt { overflow: hidden; background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  /* pain */
+  .pain { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+  .pain > div { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .pain .e { font-size: 28px; }
+  .pain b { display: block; margin: 6px 0 4px; }
+  .pain p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* inside */
+  .inside { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .mock { position: relative; height: 420px; max-width: 420px; }
+  .inside > * { min-width: 0; }
+  .sheet { position: absolute; width: 270px; height: 350px; background: #fff; border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,.14); padding: 18px; overflow: hidden; border: 1px solid var(--line); }
+  .sheet .hb { background: var(--green); height: 90px; margin: -18px -18px 14px; padding: 14px 16px; color: #fff; font: 800 16px/1.15 Fraunces, serif; }
+  .sheet .ln { height: 8px; background: #e9eeea; border-radius: 4px; margin: 8px 0; }
+  .sheet .ln.g { background: var(--gold-soft); border-left: 3px solid var(--gold); height: 34px; }
+  .s1 { left: 0; top: 30px; transform: rotate(-5deg); }
+  .s2 { left: 120px; top: 0; transform: rotate(4deg); }
+  .s3 { left: 60px; top: 60px; z-index: 2; }
+  .list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .list li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; }
+  .list .n { width: 40px; height: 40px; border-radius: 10px; background: var(--green-soft); color: var(--green); font: 800 18px/40px Fraunces, serif; text-align: center; }
+  .list b { display: block; }
+  .list span { color: var(--muted); font-size: 15px; }
+
+  /* steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; counter-reset: s; }
+  .steps > div { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; counter-increment: s; }
+  .steps > div::before { content: counter(s); display: block; font: 800 34px/1 Fraunces, serif; color: var(--gold); margin-bottom: 8px; }
+  .steps p { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+
+  /* example */
+  .example { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+  .bubble { border-radius: 14px; padding: 18px; font-size: 15px; }
+  .bubble.you { background: var(--green-soft); }
+  .bubble.cl { background: #fff; border: 1px solid var(--line); }
+  .bubble small { display: block; font-weight: 700; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .mono { font-family: "JetBrains Mono", monospace; font-size: 13.5px; white-space: pre-wrap; }
+
+  /* faq */
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { margin: 10px 0 0; color: var(--muted); }
+
+  .cta-final { background: var(--green); color: #fff; border-radius: 22px; padding: 44px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: center; }
+  .cta-final h2 { color: #fff; }
+  .cta-final p { color: #d6e6dc; }
+
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 13.5px; text-align: center; }
+
+  @media (max-width: 860px) {
+    .hero { padding: 36px 0 48px; }
+    .hero-grid, .inside, .cta-final, .example { grid-template-columns: 1fr; }
+    .pain, .steps { grid-template-columns: 1fr; }
+    .mock { height: 360px; max-width: 330px; margin: 0 auto; transform: scale(.82); transform-origin: top left; }
+    .cta-final { padding: 28px 20px; }
+    section.block { padding: 52px 0; }
+    .wrap { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">🎓 Made <b>by</b> a Pakistani student <b>for</b> Pakistani students · 100% free</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">Free cheat sheet · UC Davis Pakistani students</div>
+      <h1>Save <em>5+ hours a week</em> with AI, even if you've never used it.</h1>
+      <p class="sub">A simple 4-page guide that shows you, step by step, how to use <b>Claude's free plan</b> to understand lectures, plan the 10-week quarter, write better emails and land internships.</p>
+      <ul class="ticks">
+        <li>No subscription, no credit card, no tech skills needed</li>
+        <li>12 copy-paste prompts made for student life at Davis</li>
+        <li>Works in English, Urdu and Roman Urdu</li>
+      </ul>
+    </div>
+
+    <form class="form-card lead-form" id="form-top" novalidate>
+      <h3>Get the free cheat sheet</h3>
+      <p class="small">Enter your email and you'll get instant access, plus a copy in your inbox.</p>
+      <label for="name1">First name</label>
+      <input id="name1" name="name" autocomplete="given-name" placeholder="Ayesha" required>
+      <label for="email1">Email</label>
+      <input id="email1" name="email" type="email" autocomplete="email" placeholder="you@ucdavis.edu" required>
+      <label for="year1">I am a…</label>
+      <select id="year1" name="year">
+        <option value="">Choose one (optional)</option>
+        <option>Incoming / first-year</option>
+        <option>Sophomore / junior</option>
+        <option>Senior</option>
+        <option>Grad student</option>
+        <option>Parent / other</option>
+      </select>
+      <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn" type="submit">Send me the cheat sheet →</button>
+      <div class="err" role="alert"></div>
+      <p class="fine">No spam, ever. Unsubscribe in one click.</p>
+    </form>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">Sound familiar?</div>
+    <h2>The quarter moves fast. Week 3 and it's already midterms.</h2>
+    <div class="pain">
+      <div><div class="e">📚</div><b>Readings pile up</b><p>Forty pages for one class, a lab report for another, and you're still figuring out Unitrans.</p></div>
+      <div><div class="e">😶</div><b>Lost in lecture</b><p>The professor talks fast, the accent is new and asking a question in front of 300 people is scary.</p></div>
+      <div><div class="e">⏰</div><b>Everything at once</b><p>Classes, a campus job, calls home, cooking and prayers. There aren't enough hours in the day.</p></div>
+    </div>
+    <p style="margin-top:22px;font-size:17px">AI won't do your degree for you. Used <b>the right way</b>, though, it's like having a patient senior student available 24/7 who never judges your "dumb" questions.</p>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap inside">
+    <div class="mock" aria-hidden="true">
+      <div class="sheet s1"><div class="hb">The CHAI Formula ☕</div><div class="ln"></div><div class="ln" style="width:80%"></div><div class="ln g"></div><div class="ln"></div><div class="ln" style="width:60%"></div></div>
+      <div class="sheet s2"><div class="hb">12 Copy-Paste Prompts</div><div class="ln g"></div><div class="ln g"></div><div class="ln g"></div><div class="ln" style="width:70%"></div></div>
+      <div class="sheet s3"><div class="hb">Study smarter with Claude, on the free plan</div><div class="ln"></div><div class="ln" style="width:85%"></div><div class="ln"></div><div class="ln g"></div><div class="ln" style="width:65%"></div><div class="ln"></div></div>
+    </div>
+    <div>
+      <div class="kicker">What's inside</div>
+      <h2>Everything a total beginner needs, on 4 pages</h2>
+      <ul class="list">
+        <li><div class="n">1</div><div><b>5-minute setup</b><span>Exactly what to click on your phone or laptop. Free plan only.</span></div></li>
+        <li><div class="n">2</div><div><b>The CHAI formula ☕</b><span>A 4-part recipe that turns vague answers into useful ones.</span></div></li>
+        <li><div class="n">3</div><div><b>12 copy-paste prompts</b><span>Lectures, quizzes, long PDFs, professor emails, resumes, interviews and weekly planning around namaz.</span></div></li>
+        <li><div class="n">4</div><div><b>Free-plan survival tips</b><span>How to make your daily message limit go further.</span></div></li>
+        <li><div class="n">5</div><div><b>The academic-integrity guardrails</b><span>Use AI to learn without risking your grades or your visa status.</span></div></li>
+        <li><div class="n">6</div><div><b>A 7-day challenge</b><span>Small daily steps until it becomes a habit.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">See the difference</div>
+    <h2>One example from the cheat sheet</h2>
+    <div class="example">
+      <div class="bubble you"><small>You type</small><div class="mono">I'm a first-year in ECN 1A at UC Davis. Explain supply and demand so I can answer midterm questions. My midterm is in 4 days. Use examples about chai, rent in Davis or gas prices. Give me 5 bullet points, then 3 practice questions with answers hidden at the bottom.</div></div>
+      <div class="bubble cl"><small>Claude answers</small>A short, clear explanation using <b>chai prices and Davis rent</b>, followed by <b>3 practice questions</b> written for your exam, with answers at the bottom so you can test yourself first. That's 10 minutes instead of an hour re-reading the textbook.</div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap">
+    <div class="kicker">How it works</div>
+    <h2>Three steps. Takes 2 minutes.</h2>
+    <div class="steps">
+      <div><b>Enter your email</b><p>Use the form above. No payment and no card.</p></div>
+      <div><b>Open the cheat sheet</b><p>It opens instantly in your browser, and a copy goes to your inbox. Print it or save it as a PDF.</p></div>
+      <div><b>Do the 7-day challenge</b><p>One small task a day. By Day 7 you'll be using Claude like a pro.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap" style="max-width:780px">
+    <div class="kicker">Questions</div>
+    <h2>FAQ</h2>
+    <details><summary>Do I need to pay for Claude?</summary><p>No. Everything in this cheat sheet works on Claude's <b>free plan</b>. You only need an email or Google account to sign up at claude.ai or in the Claude app.</p></details>
+    <details><summary>I'm not a tech person. Is this too advanced?</summary><p>It's written for complete beginners. If you can send a WhatsApp message, you can use Claude, and the cheat sheet shows you exactly what to type.</p></details>
+    <details><summary>Isn't using AI cheating?</summary><p>It depends on how you use it, and every class has its own rules. The cheat sheet teaches you to use Claude to <b>explain, quiz, plan and give feedback</b> while you do the real work yourself. It also includes a section on checking each class's AI policy.</p></details>
+    <details><summary>Is this official UC Davis or Anthropic material?</summary><p>No. It's an independent student resource and isn't affiliated with UC Davis or Anthropic (the company that makes Claude).</p></details>
+    <details><summary>What will you do with my email?</summary><p>We'll send you the cheat sheet and occasional useful tips for students. We never sell your email, and you can unsubscribe any time.</p></details>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-final">
+      <div>
+        <h2>Your quarter, but easier.</h2>
+        <p>Join other Pakistani students at Davis who are learning to study smarter, not longer. It's free, it takes 2 minutes, and you can share it with your friends.</p>
+      </div>
+      <form class="form-card lead-form" id="form-bottom" novalidate>
+        <label for="name2" style="margin-top:0">First name</label>
+        <input id="name2" name="name" autocomplete="given-name" placeholder="Hamza" required>
+        <label for="email2">Email</label>
+        <input id="email2" name="email" type="email" autocomplete="email" placeholder="you@ucdavis.edu" required>
+        <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn" type="submit">Get it free →</button>
+        <div class="err" role="alert"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    An independent student resource. Not affiliated with, or endorsed by, the University of California, Davis or Anthropic. "Claude" is a trademark of Anthropic.<br>
+    © <span id="yr"></span> · Made with ☕ in Davis
+  </div>
+</footer>
+
+<script>
+  // ===================== SETTINGS: edit these =====================
+  // Paste the Web App URL from your Google Apps Script (see README.md, Step 2).
+  // While this is empty, the page runs in "demo mode": it skips saving emails and
+  // goes straight to the thank-you page, which is useful for testing.
+  const FORM_ENDPOINT = "";
+  const THANK_YOU_PAGE = "thank-you.html";
+  // =================================================================
+
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  const params = new URLSearchParams(location.search);
+  const source = params.get("utm_source") || params.get("ref") || "direct";
+
+  document.querySelectorAll(".lead-form").forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const err = form.querySelector(".err");
+      const btn = form.querySelector("button");
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      err.style.display = "none";
+
+      if (form.company.value) return; // bot filled the hidden field
+      if (!name) return showErr("Please enter your first name.");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showErr("Please enter a valid email address.");
+
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+
+      const data = new URLSearchParams({
+        name, email,
+        year: form.year ? form.year.value : "",
+        source, form: form.id, page: location.href,
+      });
+
+      try {
+        if (FORM_ENDPOINT) {
+          // Apps Script does not send CORS headers, so the request is "no-cors".
+          // We can't read the response, but the row still gets saved.
+          await fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body: data });
+        }
+        try { localStorage.setItem("cs_name", name); } catch (_) {}
+        location.href = THANK_YOU_PAGE + "?name=" + encodeURIComponent(name);
+      } catch (_) {
+        btn.disabled = false;
+        btn.textContent = "Try again →";
+        showErr("Something went wrong. Please check your internet connection and try again.");
+      }
+
+      function showErr(msg) { err.textContent = msg; err.style.display = "block"; }
+    });
+  });
+</script>
+</body>
+</html>
